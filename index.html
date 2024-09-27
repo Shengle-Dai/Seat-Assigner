@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Random Seat Assignment</title>
+    <style>
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+        gap: 10px;
+      }
+      .seat {
+        padding: 10px;
+        border: 1px solid black;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Random Seat Assignment</h1>
+    <form id="seatForm">
+      <label for="numStudents">Number of Students:</label>
+      <input type="number" id="numStudents" min="1" required /><br /><br />
+
+      <label for="numColumns">Number of Columns:</label>
+      <input
+        type="number"
+        id="numColumns"
+        min="1"
+        max="6"
+        required
+      /><br /><br />
+
+      <label for="previousSeating"
+        >Previous Seating (Comma-separated student IDs):</label
+      >
+      <textarea
+        id="previousSeating"
+        rows="3"
+        cols="40"
+        placeholder="E.g., 3,1,2,5,4"
+      ></textarea
+      ><br /><br />
+
+      <label for="numOptions">Number of Seatings:</label>
+      <input
+        type="number"
+        id="numOptions"
+        min="1"
+        required
+        value="3"
+      /><br /><br />
+
+      <button type="submit">Generate Seatings</button>
+    </form>
+
+    <h2>Generated Seatings</h2>
+    <!-- Seating options grid container -->
+    <div id="seatingOptions" class="seating-options-grid"></div>
+
+    <script src="seating.js"></script>
+  </body>
+</html>
+
+<style>
+  /* Container for multiple seating options */
+  .seating-options-grid {
+    display: grid;
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(500px, 1fr)
+    ); /* Adjust to fit screen */
+    grid-gap: 10px;
+    justify-content: center;
+  }
+
+  /* Each individual seating option */
+  .seatingOption {
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    overflow: auto; /* Ensure the container grows to fit the seatings */
+    max-width: 100%; /* Ensure option doesn't exceed the screen size */
+    box-sizing: border-box; /* Include padding and borders in the box model */
+  }
+
+  /* Grid for seating arrangement within each option */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(30px, 1fr)
+    ); /* Adjusts based on available space */
+    gap: 10px;
+    justify-items: center;
+  }
+
+  /* Individual seat styling */
+  .seat {
+    padding: 5px;
+    border: 1px solid black;
+    text-align: center;
+    font-size: calc(10px + 0.5vw); /* Adjust font size based on screen width */
+    box-sizing: border-box;
+    width: 100%; /* Ensures seat fills the available grid space */
+  }
+
+  /* Textarea for the seating array */
+  textarea {
+    margin-top: 10px;
+    width: 100%;
+    resize: none;
+  }
+</style>
